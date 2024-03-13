@@ -1,3 +1,5 @@
+#!/usr/bin/phython3
+
 def getListStudents():
     students = [
         {"id": 1, "firstName": "Guillaume", "location": "San Francisco"},

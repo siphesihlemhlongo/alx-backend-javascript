@@ -1,9 +1,11 @@
-from array import array
+export default function createInt8TypedArray(length, position, value) {
+  const arr = new ArrayBuffer(length);
+  const val = new DataView(arr);
 
-def createInt8TypedArray(length, position, value):
-    if position < 0 or position >= length:
-        raise ValueError("Position outside range")
-    
-    typed_array = array('b', [0] * length)
-    typed_array[position] = value
-    return typed_array
+  try {
+    val.setInt8(position, value);
+  } catch (e) {
+    throw Error('Position outside range');
+  }
+  return val;
+}

@@ -1,2 +1,3 @@
-def setFromArray(arr):
-    return set(arr)
+export default function setFromArray(arr) {
+  return new Set(arr);
+}

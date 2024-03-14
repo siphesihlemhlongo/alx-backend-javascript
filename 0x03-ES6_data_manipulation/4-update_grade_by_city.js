@@ -1,13 +1,20 @@
-def updateStudentGradeByCity(student_list, city, new_grades):
-    city_students = filter(lambda student: student["location"] == city, student_list)
-    
-    updated_students = map(lambda student: 
-                           {
-                               "id": student["id"],
-                               "firstName": student["firstName"],
-                               "location": student["location"],
-                               "grade": next((grade["grade"] for grade in new_grades if grade["studentId"] == student["id"]), "N/A")
-                           }, 
-                           city_students)
-    
-    return list(updated_students)
+export default function updateStudentGradeByCity(studentList, city, newGrades) {
+  // filter to get students in the specified city
+  const studentByCity = studentList.filter((student) => student.location === city);
+
+  // use map to update grades
+  const updatedStudents = studentByCity.map((student) => {
+    // find the grade object for the student in newGrades array
+    const gradeObject = newGrades.find((grade) => grade.studentId === student.id);
+
+    // If grade is found, update else set N/A
+    const updatedGrade = gradeObject ? gradeObject.grade : 'N/A';
+
+    // Return a new obj with updated grade
+    return {
+      ...student,
+      grade: updatedGrade,
+    };
+  });
+  return updatedStudents;
+}

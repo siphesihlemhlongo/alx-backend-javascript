@@ -1,6 +1,7 @@
-def getListStudentIds(student_list):
-    if not isinstance(student_list, list):
-        return []
-    
-    student_ids = map(lambda student: student["id"], student_list)
-    return list(student_ids)
+export default function getListStudentIds(studentList) {
+  if (Array.isArray(studentList)) {
+    const studentIds = studentList.map((student) => student.id);
+    return studentIds;
+  }
+  return [];
+}
